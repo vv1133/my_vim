@@ -5,7 +5,7 @@ Install
 1. clone the repo
 git clone git://github.com/vv1133/my_vim.git
 
-2.rename it:
+2. rename it:
 mv my_vim ~/.vim
 
 3. set up ~/.vimrc, have a fake .vimrc in your $HOME
