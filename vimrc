@@ -102,6 +102,7 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " pathogen
 execute pathogen#infect()
