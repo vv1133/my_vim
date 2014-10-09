@@ -29,8 +29,8 @@ set backspace=indent,eol,start
 "endif
 
 set number "显示行号.
-set tabstop=4 "设置tab键为4个空格.
-set shiftwidth=4 "设置当行之间交错时使用4个空格
+set tabstop=8 "设置tab键为8个空格.
+set shiftwidth=8 "设置当行之间交错时使用8个空格
 set showmatch "设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -108,11 +108,10 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 execute pathogen#infect()
 
 " Tlist
-let Tlist_Ctags_Cmd='/usr/bin/ctags'   " 若在windows中应写成: let/Tlist_Ctags_Cmd='ctags.exe'
+let Tlist_Ctags_Cmd='/usr/bin/ctags'
 let Tlist_Show_One_File=1
 let Tlist_OnlyWindow=1
 let Tlist_Use_Right_Window=0
-let Tlist_Sort_Type='name'
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
 let Tlist_Max_Submenu_Items=10
@@ -122,14 +121,14 @@ let Tlist_Auto_Open=0
 let Tlist_Close_On_Select=0
 let Tlist_File_Fold_Auto_Close=1
 let Tlist_GainFocus_On_ToggleOpen=0
-let Tlist_Process_File_Always=1
+let Tlist_Process_File_Always=0
 let Tlist_WinHeight=10
 let Tlist_WinWidth=18
 let Tlist_Use_Horiz_Window=0
 
 " WinManager
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap wm :WMToggle<cr>
+let g:winManagerWindowLayout='TagList'
+cmap wm :WMToggle<cr>
 
 " Cscope
 if has("cscope")
