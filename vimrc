@@ -132,28 +132,66 @@ cmap wm :WMToggle<cr>
 
 " Cscope
 if has("cscope")
-    set cscopetag   " 使支持用 Ctrl+"  和 Ctrl+t 快捷键在代码间跳来跳去
-    " check cscope for definition of a symbol before checking ctags:
-    " set to 1 if you want the reverse search order.
-    set csto=1
+	set cst
+	"set nocst
+	set csto=1
+	set csverb
+	"set nocsverb
+	set cscopequickfix=s-,c-,d-,i-,t-,e-
+	"set cspc=3
 
-    " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    " else add the database pointed to by environment variable
-    elseif $CSCOPE_DB !=""
-        cs add $CSCOPE_DB
-    endif
+	"      add cscope.out
+	nmap <C-\>a :cs add cscope.out<CR><CR>
 
-    " show msg when any other cscope db added
-    set cscopeverbose
+	"      0或者s —— 查找这个C符号
+	"      1或者g —— 查找这个定义
+	"      2或者d —— 查找被这个函数调用的函数（们）
+	"      3或者c —— 查找调用这个函数的函数（们）
+	"      4或者t —— 查找这个字符串
+	"      6或者e —— 查找这个egrep匹配模式
+	"      7或者f —— 查找这个文件
+	"      8或者i —— 查找#include这个文件的文件（们）
+	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-    nmap <C-j>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-j>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-j>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-j>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-j>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-j>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-j>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-j>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-endif"
+	nmap <C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+endif
+
+"============================================================================================
+set fencs=utf-8,cp936
+
+" 删除行尾空格
+nnoremap <leader>f :%s/\s\+$//<cr>
+
+function! KRIndent()
+	let c_space_errors = 0
+	set fileformats=unix
+	set textwidth=120
+	set noexpandtab
+	set shiftround
+	set cindent
+	set formatoptions=tcqlron
+	set cinoptions=:0,l1,t0,g0
+	syntax keyword cType u8 u16 u32 u64 s8 s16 s32 s64 off64_t
+	highlight default link LinuxError ErrorMsg
+
+	syntax match LinuxError / \+\ze\t/     " spaces before tab
+	syntax match LinuxError /\s\+$/        " trailing whitespaces
+	syntax match LinuxError /\%121v.\+/    " virtual column 121 and more
+endfunction
+if has("autocmd")
+	autocmd FileType c,cpp,h,hh call KRIndent()
+endif
