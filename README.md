@@ -16,3 +16,7 @@
 4. you also need to install Ctags, cscope, ack-grep
 
   `sudo apt-get install exuberant-ctags cscope ack-grep # for ubuntu`
+
+5. set up mycscope.sh
+
+  `sudo ln -s  ~/.vim/mycscope.sh /usr/local/bin/mycscope.sh`
