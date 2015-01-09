@@ -104,6 +104,14 @@ endif
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+"设置vim列出命令tab补全,包括命令和命令参数
+"当输入":+命令的一些字母" 后按Tab键时自动补全时行为为:
+"  1.出现一个list，此时可进行并再次按Tab补全
+"  2.跳至列表第一个选项或者自动补全当前输入
+" vim默认行为没有步骤1，直接跳转第一个选项，而且不会显示整体列表
+set wildmode=list:longest,full
+set wildmenu 
+
 " pathogen
 execute pathogen#infect()
 
