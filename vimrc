@@ -191,7 +191,7 @@ function! KRIndent()
 	set noexpandtab
 	set shiftround
 	set cindent
-	set formatoptions=tcqlron
+	set formatoptions=tqln
 	set cinoptions=:0,l1,t0,g0
 	syntax keyword cType u8 u16 u32 u64 s8 s16 s32 s64 off64_t
 	highlight default link LinuxError ErrorMsg
