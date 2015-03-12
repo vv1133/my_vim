@@ -136,7 +136,7 @@ let Tlist_Use_Horiz_Window=0
 
 " WinManager
 let g:winManagerWindowLayout='TagList'
-cmap wm :WMToggle<cr>
+nmap zm :WMToggle<cr>
 
 " Cscope
 if has("cscope")
