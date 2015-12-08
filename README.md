@@ -13,10 +13,14 @@
 
   `ln -s ~/.vim/vimrc ~/.vimrc`
 
-4. you also need to install Ctags, cscope, ack-grep
+4. install Ctags, cscope, ack-grep
 
   `sudo apt-get install exuberant-ctags cscope ack-grep # for ubuntu`
 
-5. set up mycscope.sh
+5. install jedi
+
+  `sudo pip2 install jedi`
+
+6. set up mycscope.sh
 
   `sudo ln -s  ~/.vim/mycscope.sh /usr/local/bin/mycscope.sh`

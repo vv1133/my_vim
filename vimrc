@@ -200,6 +200,21 @@ function! KRIndent()
 	syntax match LinuxError /\s\+$/        " trailing whitespaces
 	syntax match LinuxError /\%121v.\+/    " virtual column 121 and more
 endfunction
+
+function! PythonIndent()
+	set fileformats=unix
+	set textwidth=120
+	set expandtab
+	set shiftround
+	let python_highlight_all = 1
+	highlight default link LinuxError ErrorMsg
+
+	syntax match LinuxError / \+\ze\t/     " spaces before tab
+	syntax match LinuxError /\s\+$/        " trailing whitespaces
+	syntax match LinuxError /\%121v.\+/    " virtual column 121 and more
+endfunction
+
 if has("autocmd")
 	autocmd FileType c,cpp,h,hh call KRIndent()
+	autocmd FileType py call PythonIndent()
 endif
