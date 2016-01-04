@@ -216,5 +216,5 @@ endfunction
 
 if has("autocmd")
 	autocmd FileType c,cpp,h,hh call KRIndent()
-	autocmd FileType py call PythonIndent()
+	autocmd FileType python call PythonIndent()
 endif
