@@ -184,6 +184,8 @@ set fencs=utf-8,cp936
 " 删除行尾空格
 nnoremap <leader>f :%s/\s\+$//<cr>
 
+let g:go_fmt_autosave = 0
+
 function! KRIndent()
 	let c_space_errors = 0
 	set fileformats=unix
@@ -206,6 +208,7 @@ function! PythonIndent()
 	set textwidth=120
 	set expandtab
 	set shiftround
+	set tabstop=4
 	let python_highlight_all = 1
 	highlight default link LinuxError ErrorMsg
 
