@@ -209,6 +209,7 @@ function! PythonIndent()
 	set expandtab
 	set shiftround
 	set tabstop=4
+	set shiftwidth=4
 	let python_highlight_all = 1
 	highlight default link LinuxError ErrorMsg
 
