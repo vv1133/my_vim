@@ -192,6 +192,8 @@ function! KRIndent()
 	set textwidth=120
 	set noexpandtab
 	set shiftround
+	set tabstop=8
+	set shiftwidth=8
 	set cindent
 	set formatoptions=tqln
 	set cinoptions=:0,l1,t0,g0
