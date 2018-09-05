@@ -189,7 +189,7 @@ let g:go_fmt_autosave = 0
 function! KRIndent()
 	let c_space_errors = 0
 	set fileformats=unix
-	set textwidth=120
+	set textwidth=140
 	set noexpandtab
 	set shiftround
 	set tabstop=8
@@ -218,6 +218,9 @@ function! PythonIndent()
 	syntax match LinuxError / \+\ze\t/     " spaces before tab
 	syntax match LinuxError /\s\+$/        " trailing whitespaces
 	syntax match LinuxError /\%121v.\+/    " virtual column 121 and more
+
+	map <C-\>i oimport ipdb;ipdb.set_trace() # XXX: BREAKPOINT<ESC>
+	map <C-\>p oimport pdb;pdb.set_trace() # XXX: BREAKPOINT<ESC>
 endfunction
 
 if has("autocmd")
